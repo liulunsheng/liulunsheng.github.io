@@ -25,7 +25,7 @@
 
 3. 发布第一篇博客，如下图所示
 
-   ![img](http://i1.piimg.com/4851/314c43c27ce0ab1f.png)			
+   ![img](http://i1.piimg.com/4851/53bc8189858d849f.png)			
 
    共同协作修改如下图所示：
 
@@ -59,7 +59,7 @@
 
 6. 实验结果
 
-   ![img](http://i1.piimg.com/4851/aa70b88d94ff814e.png)
+   ![img](http://i1.piimg.com/4851/13db8b87133cfd1d.png)
 
 ## 四、实验小结
 
