@@ -1,5 +1,7 @@
 # 实验一 在Github上用Markdown创建技术博客
 
+[TOC]
+
 ## 一、实验目的
 
 1. 熟悉Github网站
