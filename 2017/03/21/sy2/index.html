@@ -6,13 +6,23 @@
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="expires" content="0">
   
-  <title>归档：2017/3 | 刘伦胜的博客</title>
+  <title>sy2 | 刘伦胜的博客</title>
   <meta name="author" content="liulunsheng">
+  
+  <meta name="description" content="实验二 Git使用
+一、实验目的
+掌握git使用
+掌握使用Github作为远程仓库##二、实验任务
+练习本地git操作
+用SSH同步本地与Github仓库##三、实验步骤与结果
+安装一个Github的桌面版本，下载地址(https://desktop.github.com/)
+
+进入一个项目，例如进">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="sy2"/>
   <meta property="og:site_name" content="刘伦胜的博客"/>
 
   
@@ -113,107 +123,116 @@ var _hmt = _hmt || [];
   	<div class="content">
     	 
 
-<!-- title -->
-<div class="page-header">
-  <h1 class="archive-title"><i class="fa fa-archive"></i> 2017/3</h1>
-</div>
 
-<div class="row page">
-  <!-- cols -->
-  
-  <div class="col-md-9">
 	
-
-	  <div id="top_search"></div>
-
-	  <div class="archive">
-		
-		
-		
-			
-			
-			<h4 class="archive-ul" data-toggle="collapse" data-target="#2017">2017<b class="caret"></b></h4>
-			<ul id="2017" class="collapse in">
-			
-		
-		<li class="listing-item">
-		<span class="date_class"> 2017-03-21 </span> &raquo;
-		
-		   <span class="title"><a href="/2017/03/21/sy2/" >sy2</a></span>
-		
-		</li>			
-		
-		
-		
-		<li class="listing-item">
-		<span class="date_class"> 2017-03-14 </span> &raquo;
-		
-		   <span class="title"><a href="/2017/03/14/sy1/" >sy1</a></span>
-		
-		</li>			
-		
-		</ul>
+		<div class="page-header">
+			<h1> sy2</h1>
 		</div>
-
-</div> <!-- col-md-9/col-md-12 -->
-
-
-<div class="col-md-3">
-	<div id="sidebar">
 	
-			
-  <div id="site_search">
-   <div class="form-group">
-    <input type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"/>
-   </div>  
-  <div id="local-search-result"></div>
-  </div>
 
 
-		
-			
-		
-			
 
-		
-			
-<div class="widget">
-  <h4>最新文章</h4>
-  <ul class="entry list-unstyled">
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="实验二-Git使用"><a href="#实验二-Git使用" class="headerlink" title="实验二 Git使用"></a>实验二 Git使用</h1><hr>
+<h2 id="一、实验目的"><a href="#一、实验目的" class="headerlink" title="一、实验目的"></a>一、实验目的</h2><ol>
+<li>掌握git使用</li>
+<li>掌握使用Github作为远程仓库<br>##二、实验任务</li>
+<li>练习本地git操作</li>
+<li>用SSH同步本地与Github仓库<br>##三、实验步骤与结果</li>
+<li><p>安装一个Github的桌面版本，下载地址(<a href="https://desktop.github.com/" target="_blank" rel="external">https://desktop.github.com/</a>)</p>
+</li>
+<li><p>进入一个项目，例如进入<strong>liulunsheng.github.io</strong>这个项目，点击<strong>open in desktop</strong>，就克隆了一个项目至客户端。如下图所示<img src="http://i1.piimg.com/567571/552bf295859a2a04.png" alt="QQ截图20170321144351"></p>
+</li>
+<li><p>右击项目，选择在文件浏览器中打开，即<strong>Open in Explorer</strong>，新建一个文本文档，例如readme.txt，内容为“today is 2017.3.21”。客户端中显示有一个<strong>committed change</strong>，保存更改。我们可以看到log都显示在左边，并有修改时间。log截图如下所示</p>
+<p><img src="http://i1.piimg.com/567571/a448c07b0dccea7c.png" alt="QQ截图20170321150928"></p>
+</li>
+<li><p>保存更改后可以同步到github网页，只需点击<img src="http://p1.bqimg.com/567571/1d34b67ed0a12a70.png" alt="QQ截图20170321151211">即可同步。这时可以看到网页上的<strong>commits</strong>也更新了，如下图所示</p>
+<p><img src="http://i1.piimg.com/567571/29be2bd54a01debc.png" alt="QQ截图20170321151720"></p>
+</li>
+<li><p>如果要对代码进行在原基础之上的修改，又不想破坏源代码，可以选择新建一个分支，</p>
+<p><img src="http://p1.bqimg.com/1949/426a3e6c215b5c45.png" alt="Markdown"></p>
+</li>
+<li><p>修改readme.txt内容并保存，并将bug2这个分支合并到master分支上，即可对代码进行更改。可以看到github上<strong>branch</strong>变成了两个</p>
+<p><img src="http://i1.piimg.com/567571/bb97f0db19405980.png" alt=""></p>
+</li>
+</ol>
+<h2 id="四、实验小结"><a href="#四、实验小结" class="headerlink" title="四、实验小结"></a>四、实验小结</h2><p>​    github客户端集成了很多git的功能，少了那些代码的繁杂过程，用起来还是费城的人性化，初步的学习让我掌握了其中的大多数功能，但还是需要熟练掌握。</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
     
-      <li>
-        <a href="/2017/03/21/sy2/" ><i class="fa fa-file-o"></i>sy2</a>
-      </li>
     
-      <li>
-        <a href="/2017/03/14/sy1/" ><i class="fa fa-file-o"></i>sy1</a>
-      </li>
+    <a type="button" class="btn btn-default disabled"><i class="fa fa-arrow-circle-o-left"></i>上一页</a>
     
-  </ul>
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2017/03/14/sy1/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
 </div>
 
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
 		
-			
-<div class="widget">
-	<h4>链接</h4>
-	<ul class="blogroll list-unstyled">
 	
-		<li><i class="fa fa-github"></i><a href="https://github.com/wzpan/hexo-theme-freemind" title="Freemind's Github repository." target="_blank"]);">Freemind</a></li>
-	
-		<li><i class="fa fa-github"></i><a href="https://github.com/kristopolous/BOOTSTRA.386" title="BOOTSTRA.386's Github repository." target="_blank"]);">BOOTSTRA.386</a></li>
-	
-		<li><i class="fa fa-github"></i><a href="https://github.com/blackshow/hexo-theme-freemind.386" title="Freemind.386's Github repository." target="_blank"]);">Freemind.386</a></li>
-	
-		<li><i class="fa fa-github"></i><a href="http://www.github.com/blackshow" title="My Github account." target="_blank"]);">My Github</a></li>
-	
-	</ul>
-</div>
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
 
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-03-21 
+	</div>
+	
 
+	<!-- categories -->
+    
+
+	<!-- tags -->
 		
-	</div> <!-- sidebar -->
-</div> <!-- col-md-3 -->
 
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
 
 
 
