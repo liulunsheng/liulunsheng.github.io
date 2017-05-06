@@ -193,76 +193,27 @@
 </ol>
 <h2 id="三、实验步骤与结果"><a href="#三、实验步骤与结果" class="headerlink" title="三、实验步骤与结果"></a>三、实验步骤与结果</h2><ol>
 <li><p>生成多个apk </p>
-<p>1) 创建渠道占位符</p>
-<p>首先在AndroidManifest文件的Application节点下，创建如下所示的meta-data节点。其中”${CHANNEL_VALUE}”就是要进行替换的渠道占位符。</p>
+<p>1) 创建渠道占位符<br>首先在AndroidManifest文件的Application节点下，创建如下所示的meta-data节点。其中”${CHANNEL_VALUE}”就是要进行替换的渠道占位符。<br><img src="http://i2.muimg.com/519918/3be0569268f1643e.png" alt=""><br>2)  配置Gradle脚本<br>在项目的Gradle脚本的android领域中，添加productFlavors领域，并增加定    义的渠道名。同时，使用manifestPlaceholders指定要替换渠道占位符的值，代码如下所示。<br><img src="http://i2.muimg.com/519918/604c88f552a9bed0.png" alt=""><br>这里定义了三个不同的渠道——product1、product2、product3。每个渠道都将指定值赋给渠道占位符CHANNEL_VALUE。这样配置后，就完成了整个渠道的打包工作。在终端中执行gradlebuild即可开始构建，在构建完成后系统会在项目的/app/build/outputs/apk文件夹下看到所有生成的渠道包，如下图所示。<br><img src="http://i1.piimg.com/519918/9744003c580dd2da.png" alt=""></p>
 </li>
-</ol>
-<p><img src="http://i2.muimg.com/519918/3be0569268f1643e.png" alt=""></p>
-<p>​    2)  配置Gradle脚本</p>
-<p>​    在项目的Gradle脚本的android领域中，添加productFlavors领域，并增加定义的            渠道名。同时，使用manifestPlaceholders指定要替换渠道占位符的值，代码如下所示。</p>
-<p><img src="http://i2.muimg.com/519918/604c88f552a9bed0.png" alt=""></p>
-<p>​    这里定义了三个不同的渠道——product1、product2、product3。每个渠道都将指定值赋给渠道占位符CHANNEL_VALUE。这样配置后，就完成了整个渠道的打包工作。在终端中执行gradlebuild即可开始构建，在构建完成后系统会在项目的/app/build/outputs/apk文件夹下看到所有生成的渠道包，如下图所示。</p>
-<p><img src="http://i1.piimg.com/519918/9744003c580dd2da.png" alt=""></p>
-<ol>
 <li><p>管理依赖库</p>
-<p>1) 利用Gradle的通知机制</p>
-<p>虽然当项目依赖的库项目有更新之后，Gradle并不会立即通知主项目，但Gradle会给出一种通知机制，即利用Gradle的检查周期进行check。</p>
+<p>1) 利用Gradle的通知机制<br>虽然当项目依赖的库项目有更新之后，Gradle并不会立即通知主项目，但Gradle会给出一种通知机制，即利用Gradle的检查周期进行check。<br><img src="http://i4.buimg.com/519918/8114713f9a329c23.png" alt=""><br>这样就可以设置Gradle依赖的缓存时间。同时Gradle还提供了在依赖传递中的强制刷新配置。例如，在一个简单的compile语句中，代码如下所示。<br><img src="http://i2.muimg.com/519918/fec5672a78c947a7.png" alt=""><br>如果增加一个属性transitive并让其值为true，则代表会强制刷新远程库，避免远程库更新后本地未刷新的问题。<br>2) 利用Gradle的依赖检查<br>实际上，利用Gradle提供的task可以很方便地解决依赖问题，用到的Gradle指令就是gradlew androidDependencies，使用效果如下所示。<br><img src="http://i1.piimg.com/519918/9415e67d5f4fb619.png" alt=""><br>利用这个指令，可以很方便地找到每种buildType下的依赖关系图。这样当某个依赖库发生变更的时候，就可以通过这个task检查每个项目下是否包含该依赖库的引用。<br>3) Gradle依赖统一管理<br>利用Gradle全局变量就可以非常方便地实现这一管理，在根目录的build.gradle脚本中配置如下所示代码。<br><img src="http://i2.muimg.com/519918/15fd2b5d7ea83157.png" alt=""><br>在全局Gradle脚本中，指定了android和dependencies两个列表，并在其中配置了统一的参数和对应的值。这样在每个module中，可以通过代码使用全局的依赖配置，代码如下所示。<br><img src="http://i2.muimg.com/519918/5e7652d83e4420bc.png" alt=""><br><img src="http://i1.piimg.com/519918/4b9931f8e5af4ada.png" alt=""><br>通过这种方式，可以使用全局参数统一管理这些依赖配置。</p>
 </li>
-</ol>
-<p><img src="http://i4.buimg.com/519918/8114713f9a329c23.png" alt=""></p>
-<p>​    这样就可以设置Gradle依赖的缓存时间。同时Gradle还提供了在依赖传递中的强制刷新配置。例如，在一个简单的compile语句中，代码如下所示。</p>
-<p><img src="http://i2.muimg.com/519918/fec5672a78c947a7.png" alt=""></p>
-<p>​    如果增加一个属性transitive并让其值为true，则代表会强制刷新远程库，避免远程库更新后本地未刷新的问题。</p>
-<p>​    2) 利用Gradle的依赖检查</p>
-<p>​    实际上，利用Gradle提供的task可以很方便地解决依赖问题，用到的Gradle指令就是gradlew androidDependencies，使用效果如下所示。</p>
-<p><img src="http://i1.piimg.com/519918/9415e67d5f4fb619.png" alt=""></p>
-<p>​    利用这个指令，可以很方便地找到每种buildType下的依赖关系图。这样当某个依赖库发生变更的时候，就可以通过这个task检查每个项目下是否包含该依赖库的引用。</p>
-<p>​    3) Gradle依赖统一管理</p>
-<p>​    利用Gradle全局变量就可以非常方便地实现这一管理，在根目录的build.gradle脚本中配置如下所示代码。</p>
-<p><img src="http://i2.muimg.com/519918/15fd2b5d7ea83157.png" alt=""></p>
-<p>​    在全局Gradle脚本中，指定了android和dependencies两个列表，并在其中配置了统一的参数和对应的值。这样在每个module中，可以通过代码使用全局的依赖配置，代码如下所示。</p>
-<p><img src="http://i2.muimg.com/519918/5e7652d83e4420bc.png" alt=""></p>
-<p><img src="http://i1.piimg.com/519918/4b9931f8e5af4ada.png" alt=""></p>
-<p>​    通过这种方式，可以使用全局参数统一管理这些依赖配置。</p>
-<ol>
 <li><p>编译提速</p>
-<p>在gradle.properties文件中增加如下所示的代码。</p>
+<p>在gradle.properties文件中增加如下所示的代码。<br><img src="http://i1.piimg.com/519918/cb4b3509aa0525b5.png" alt=""><br>同时，在build.gradle中增加如下所示的代码。<br><img src="http://i1.piimg.com/519918/331f8ca04bdb5880.png" alt=""><br>gradle.properties文件中的代码，表示开启Gradle的多线程和多核心支持。而build.gradle中的代码，表示开启Gradle的增量编译，增加编译的内存资源到4G。这两个操作或多或少可以增加一些编译的速度，但也会更加消耗系统资源。</p>
 </li>
-</ol>
-<p><img src="http://i1.piimg.com/519918/cb4b3509aa0525b5.png" alt=""></p>
-<p>​    同时，在build.gradle中增加如下所示的代码。</p>
-<p><img src="http://i1.piimg.com/519918/331f8ca04bdb5880.png" alt=""></p>
-<p>​    gradle.properties文件中的代码，表示开启Gradle的多线程和多核心支持。而build.gradle中的代码，表示开启Gradle的增量编译，增加编译的内存资源到4G。这两个操作或多或少可以增加一些编译的速度，但也会更加消耗系统资源。</p>
-<ol>
 <li><p>增加编译内存</p>
-<p>以下是Gradle的默认配置，如果需要增大内存使用，只需要反注释这两行代码，并修改内存大小即可。</p>
+<p>以下是Gradle的默认配置，如果需要增大内存使用，只需要反注释这两行代码，并修改内存大小即可。<br><img src="http://i2.muimg.com/519918/aae9f0b2e12c3de7.png" alt=""></p>
 </li>
-</ol>
-<p><img src="http://i2.muimg.com/519918/aae9f0b2e12c3de7.png" alt=""></p>
-<ol>
 <li><p>调用终端指令</p>
-<p>在java中可以通过Runtime.exec()方法来获取终端指令的数据。在Gradle中同样可以获取终端数据，例如新建一个task，代码如下所示。</p>
+<p>在java中可以通过Runtime.exec()方法来获取终端指令的数据。在Gradle中同样可以获取终端数据，例如新建一个task，代码如下所示。<br><img src="http://i2.muimg.com/519918/c41b84d37024275a.png" alt=""><br>在上面的代码中，调用gitlog –pretty=oneline -1指令，即打印最近一行git log信息，通过调用’command’.execute([],project.rootDir).text即可返回其数据，类似于Runtime.exec()方法，显示结果如下所示。<br><img src="http://i1.piimg.com/519918/842c6034957d6c60.png" alt=""><br>在Gradle脚本中调用终端指令会降低编译速度。需权衡利弊，决定是否使用。</p>
 </li>
-</ol>
-<p><img src="http://i2.muimg.com/519918/c41b84d37024275a.png" alt=""></p>
-<p>​    在上面的代码中，调用gitlog –pretty=oneline -1指令，即打印最近一行git log信息，通过调用’command’.execute([],project.rootDir).text即可返回其数据，类似于Runtime.exec()方法，显示结果如下所示。</p>
-<p><img src="http://i1.piimg.com/519918/842c6034957d6c60.png" alt=""></p>
-<p>​    在Gradle脚本中调用终端指令会降低编译速度。需权衡利弊，决定是否使用。</p>
-<ol>
 <li><p>精简资源</p>
-<p>manifyEnabled指令，不仅用于对Android App进行混淆，同时可以对代码进行优化、精简。同时配合shrinkResources指令，还可以项目工程中无效的资源文件，从而进一步精简APK文件。示例代码如下。</p>
+<p>manifyEnabled指令，不仅用于对Android App进行混淆，同时可以对代码进行优化、精简。同时配合shrinkResources指令，还可以项目工程中无效的资源文件，从而进一步精简APK文件。示例代码如下。<br><img src="http://i2.muimg.com/519918/1d042ce085486985.png" alt=""><br>在androidstudio中，IDE也提供了一个快捷指令来直接进行资源精简。使用快捷键“ctrl+shift+A”就可以调出快捷指令输入框，输入“remove unusedresources”即可执行该指令，其效果与shrinkResources类似，如下图所示。<br><img src="http://i2.muimg.com/519918/76a4b5bbddb85f90.png" alt=""><br>使用这两种方式来进行资源清理，可以很大程度地减少垃圾资源的占用。</p>
 </li>
-</ol>
-<p><img src="http://i2.muimg.com/519918/1d042ce085486985.png" alt=""></p>
-<p>​    在androidstudio中，IDE也提供了一个快捷指令来直接进行资源精简。使用快捷键“ctrl+shift+A”就可以调出快捷指令输入框，输入“remove unusedresources”即可执行该指令，其效果与shrinkResources类似，如下图所示。</p>
-<p><img src="http://i2.muimg.com/519918/76a4b5bbddb85f90.png" alt=""></p>
-<p>​    使用这两种方式来进行资源清理，可以很大程度地减少垃圾资源的占用。</p>
-<ol>
 <li><p>清除缓存</p>
-<p>在Gradle中，提供了gradlew clean来清除缓存，还提供了一个指令来重新刷新全部的依赖库——gradlew –refresh-dependencies。通过这个指令，可以强制刷新所依赖的库项目，从而获取新的版本库。</p>
+<p>在Gradle中，提供了gradlew clean来清除缓存，还提供了一个指令来重新刷新全部的依赖库——gradlew –refresh-dependencies。通过这个指令，可以强制刷新所依赖的库项目，从而获取新的版本库。<br><img src="http://i1.piimg.com/519918/670b8612acc2b033.png" alt=""></p>
 </li>
 </ol>
-<p><img src="http://i1.piimg.com/519918/670b8612acc2b033.png" alt=""></p>
 <h2 id="四、实验小结"><a href="#四、实验小结" class="headerlink" title="四、实验小结"></a>四、实验小结</h2><p>通过这次实验，我也对Gradle爱恨交加，爱的是它强大的功能，让android开发的依赖管理、库管理、渠道管理等变得更加方便；恨的是它繁杂的过程，屡次的失败会让你一筹莫展。</p>
 
             <div class="clearfix"></div>
